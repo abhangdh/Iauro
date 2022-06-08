@@ -21,10 +21,10 @@ export class AppComponent implements OnInit {
     this.listData = [];
 
     this.userForm = this.fb.group ({
-      name : ['',Validators.required],
-      address : ['',Validators.required],
-      email_id: ['',Validators.required],
-      contactNo : ['',Validators.required],
+      name : ['',Validators.required,Validators.pattern('aA-zZ')],
+      address : ['',Validators.required, Validators.pattern('aA-zZ .,/"')],
+      email_id: ['',Validators.required, Validators.pattern('a-z,0-9,@mail.com')],
+      contactNo : ['',Validators.required, Validators.pattern('0-9')],
       gender : ['',Validators.required]
     })
   }
