@@ -1,14 +1,43 @@
 {
   "posts": [
-    
-  ],
-  "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "firstname": "Mishti",
+      "lastname": "Roy",
+      "birthday": "2022-06-13",
+      "gender": "f",
+      "education": "post graduate",
+      "company": "Iauro systems PVT",
+      "jobExperience": 1,
+      "salary": 3,
+      "profile": "photo2.jpg",
+      "id": 1
+    },
+    {
+      "firstname": "Kunal ",
+      "lastname": "Shetty",
+      "birthday": "2022-08-16",
+      "gender": "m",
+      "education": "PhD",
+      "company": "Microsoft",
+      "jobExperience": 8,
+      "salary": 15,
+      "profile": "photo3.jpeg",
+      "id": 2
+    },
+    {
+      "firstname": "Madhura ",
+      "lastname": "Singh",
+      "birthday": "1995-07-13",
+      "gender": "f",
+      "education": "PhD",
+      "company": "Google",
+      "jobExperience": 7,
+      "salary": 20,
+      "profile": "photo4.jpg",
+      "id": 3
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }

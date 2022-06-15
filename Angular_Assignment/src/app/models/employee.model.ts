@@ -4,6 +4,7 @@ export class Employee {
     lastname: string = '';
     birthday: string = '';
     gender: string = '';
+    education: string="";
     company: string = '';
     jobExperience: number = 0;
     salary: number = 0;
