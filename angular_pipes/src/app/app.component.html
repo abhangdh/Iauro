@@ -1,0 +1,12 @@
+
+<h1 class="bg-primary">Welcome to {{title}}</h1>
+
+<h4>Example of  Custom Pipe</h4>
+
+<ul>
+  <li *ngFor="let user of users">
+  <div [innerHTML]="user.city | highlight:user.cityCode"></div>
+  </li>
+</ul>
+
+
