@@ -1,5 +1,4 @@
 import { Component,EventEmitter, Input, OnInit, Output } from '@angular/core';
-
 import { Employee } from '../models/employee.model';
 
 @Component({
@@ -37,7 +36,7 @@ export class EmployeeComponent implements OnInit {
   editEmployeeClicked(){
     this.onEditEmployee.emit(this.employee.id);
   }
-  
-
 }
+
+
 

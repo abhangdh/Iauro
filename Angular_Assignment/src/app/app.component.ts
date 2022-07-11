@@ -11,10 +11,10 @@ import { EmployeeService } from './services/employee.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html', 
-   styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('fileInput') fileInput: any;
+  @ViewChild('filgeInput') fileInput: any;
   @ViewChild('addEmployeeButton') addEmployeeButton : any; 
   title = 'Angular_Assignment';
 
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    //this.buttontemp.nativeElement.click();
+  //this.buttontemp.nativeElement.click();
   }
 
   addEmployee(){
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       salary: this.Salary.value,
       profile: this.fileInput.nativeElement.files[0]?.name,
     }
-    this.employeeService.postEmployee(employee).subscribe((res)=>{
+      this.employeeService.postEmployee(employee).subscribe((res)=>{
       this.employees.unshift(res);
       this.clearForm();
     });
@@ -126,7 +126,6 @@ setForm(emp: Employee){
   this.Salary.setValue(emp.salary);
   this.fileInput.nativeElement.value = '';
 }
-
 
   public get Firstname(): FormControl{
     return this.employeeForm.get('firstname') as FormControl;
