@@ -13,13 +13,25 @@ export class AppComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
 
-  userForm : FormGroup;
+  userForm : FormGroup | undefined;
+  validationMessages = {
+    'name':{
+      'required': 'Full name is required',
+      'minlength': 'Full name must be greater than 2 characters',
+      'maxlength': 'Full name must be less than 20 characters'
+    },
+    'address':{
+      'required':'First letter is capital',
+      'required':'Address is required'
+    },
+    
+  }
   listData : any;
 
-  constructor(private fb:FormBuilder){
+  constructor(private fb:FormBuilder){}
 
-    this.listData = [];
-
+    ngOnInit()            {
+  
     this.userForm = this.fb.group ({
       name : ['',Validators.required,Validators.pattern('aA-zZ')],
       address : ['',Validators.required, Validators.pattern('aA-zZ .,/"')],
@@ -28,6 +40,7 @@ export class AppComponent implements OnInit {
       gender : ['',Validators.required]
     })
   }
+}
 
   public additem(): void{
     this.listData.push(this.userForm.value);
@@ -53,7 +66,6 @@ export class AppComponent implements OnInit {
     };
    
 
-  ngOnInit() {
-
-  }
-}
+  userForm.valueChanges.subscribe((data)=>{
+  this.logValidationErrors(this.userForm);
+});

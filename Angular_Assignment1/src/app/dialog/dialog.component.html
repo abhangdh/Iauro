@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Add Employee Information</h1>
+<div mat-dialog-content>
+  <form [formGroup]="employeeForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Employee Full Name</mat-label>
+        <input formControlName="empname" matInput placeholder="Placeholder" required>
+        <mat-error>this field is mandatory.</mat-error>
+      </mat-form-field>
+    
+      <label for="">Gender </label>
+      <mat-radio-group formControlName="gender">
+        <mat-radio-button *ngFor="let emp of genderList" [value]="emp">
+          {{emp}}
+        </mat-radio-button>
+      </mat-radio-group>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Birthdate</mat-label>
+        <input  formControlName="birthdate" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Address</mat-label>
+        <textarea formControlName="address" matInput placeholder="Ex. 100 Main St"></textarea>
+        <mat-error *ngIf="employeeForm.controls['address'].errors?.['required']">This field is mandatory</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Mobile</mat-label>
+        <input formControlName="mobile" type="tel" matInput placeholder="555-555-1234">
+        <mat-error *ngIf="employeeForm.controls['mobile'].errors?.['required']">This field is mandatory.</mat-error>
+        <mat-error *ngIf="employeeForm.controls['mobile'].errors?.['minlength']">Minimum 10 digits are needed.</mat-error>
+        </mat-form-field>
+    
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email ID*</mat-label>
+            <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="employeeForm.controls['email'].errors?.['minlength']">Minimum 5 letters required.</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Company Name</mat-label>
+            <input formControlName="company" matInput placeholder="Placeholder*" />
+            <mat-error *ngIf="employeeForm.controls['company'].errors?.['required']">This field is mandatory</mat-error>
+          </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-action [align]="['end']">
+    <button mat-raised-button color="primary" (click)="addEmployee()" [disabled]="employeeForm.invalid"> {{actionBtn}}</button>
+    <button style="margin-left:8px;" mat-raised-button color="warn" mat-dialog-close> Close </button>
+
+</div>
