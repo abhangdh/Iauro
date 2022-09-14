@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'Call Api in Angular....';
   constructor(private api:GetApiService)
   {
-
+ 
   }
   ngOnInit()
     {

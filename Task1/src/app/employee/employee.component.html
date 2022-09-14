@@ -1,0 +1,23 @@
+<mat-card-header>
+    <mat-toolbar class="toolbar">
+        <mat-card-title>Employee Information</mat-card-title>
+        <span class="toolbar-spacer"></span>
+            <mat-icon (click)="onNoClick()">Cancel</mat-icon>
+    </mat-toolbar>
+</mat-card-header>
+<mat-card-content>
+    <div class="container">
+        <form [formGroup]="_empForm" (submit)="OnSubmit()"></form>
+        <div class="form-Group">
+            <div class="row">
+            <div class="col-md-6">
+                <label>First name</label>
+                <input type=" text" formControlName="FirstName" class="form-control">
+            </div>
+        </div>
+        </div>
+    </div>
+</mat-card-content>
+     <div class="container">
+        
+     </div>

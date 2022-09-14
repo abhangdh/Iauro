@@ -1,21 +1,19 @@
 import { generateForwardRef } from '@angular/compiler/src/render3/util';
 import { partitionArray } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, } from '@angular/forms';
-
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { Employee } from './models/employee.model';
 import { EmployeeService } from './services/employee.service';
 
-
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html', 
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('filgeInput') fileInput: any;
-  @ViewChild('addEmployeeButton') addEmployeeButton : any; 
+  @ViewChild('fileInput') fileInput: any;
+  @ViewChild('addEmployeeButton') addEmployeeButton: any;
   title = 'Angular_Assignment';
 
   employeeForm: FormGroup;
@@ -29,7 +27,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     'post graduate',
     'PhD',
   ];
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService){
+  constructor(
+    private fb: FormBuilder,
+    private employeeService: EmployeeService
+  ) {
     this.employeeForm = fb.group({});
     this.employees = [];
     this.employeesToDisplay = this.employees;
@@ -47,20 +48,19 @@ export class AppComponent implements OnInit, AfterViewInit {
       salary: this.fb.control(''),
     });
 
-    this.employeeService.getEmployees().subscribe((res) =>{
-      for(let emp of res){
+    this.employeeService.getEmployees().subscribe((res) => {
+      for (let emp of res) {
         this.employees.unshift(emp);
       }
       this.employeesToDisplay = this.employees;
     });
-
   }
 
   ngAfterViewInit(): void {
-  //this.buttontemp.nativeElement.click();
+    //this.buttontemp.nativeElement.click();
   }
 
-  addEmployee(){
+  addEmployee() {
     let employee: Employee = {
       firstname: this.Firstname.value,
       lastname: this.Lastname.value,
@@ -71,13 +71,13 @@ export class AppComponent implements OnInit, AfterViewInit {
       jobExperience: this.JobExperience.value,
       salary: this.Salary.value,
       profile: this.fileInput.nativeElement.files[0]?.name,
-    }
-      this.employeeService.postEmployee(employee).subscribe((res)=>{
+    };
+    this.employeeService.postEmployee(employee).subscribe((res) => {
       this.employees.unshift(res);
       this.clearForm();
     });
   }
-  clearForm(){
+  clearForm() {
     this.Firstname.setValue('');
     this.Lastname.setValue('');
     this.Birthday.setValue('');
@@ -89,66 +89,64 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.fileInput.nativeElement.value = '';
   }
 
-removeEmployee(event: any){
-  this.employees.forEach((val, index)=>{
-    if (val.id === parseInt(event)) {
-      this.employeeService.deleteEmployee(event).subscribe((res)=>{
-        this.employees.splice(index, 1);
-      })
-    }
-  })
-
+  removeEmployee(event: any) {
+    this.employees.forEach((val, index) => {
+      if (val.id === parseInt(event)) {
+        this.employeeService.deleteEmployee(event).subscribe((res) => {
+          this.employees.splice(index, 1);
+        });
+      }
+    });
   }
-editEmployee(event: any){
-  this.employees.forEach((val, ind)=>{
-    if(val.id === event){
-      this.setForm(val);
-    }
-  });
-  this.removeEmployee(event);
-  this.addEmployeeButton.nativeElement.click();
-  
-}
+  editEmployee(event: any) {
+    this.employees.forEach((val, ind) => {
+      if (val.id === event) {
+        this.setForm(val);
+      }
+    });
+    this.removeEmployee(event);
+    this.addEmployeeButton.nativeElement.click();
+  }
 
-setForm(emp: Employee){
-  this.Firstname.setValue(emp.firstname);
-  this.Lastname.setValue(emp.lastname);
-  this.Birthday.setValue(emp.birthday);
-  this.Gender.setValue(emp.gender);
+  setForm(emp: Employee) {
+    this.Firstname.setValue(emp.firstname);
+    this.Lastname.setValue(emp.lastname);
+    this.Birthday.setValue(emp.birthday);
+    this.Gender.setValue(emp.gender);
 
-  let educationIndex = 0;
-  this.educationOptions.forEach((val, index)=>{
-    if (val === emp.education) educationIndex = index;
-  });
-  this.Education.setValue(educationIndex);
-  this.Company.setValue(emp.company);
-  this.JobExperience.setValue(emp.jobExperience);
-  this.Salary.setValue(emp.salary);
-  this.fileInput.nativeElement.value = '';
-}
+    let educationIndex = 0;
+    this.educationOptions.forEach((val, index) => {
+      if (val === emp.education) educationIndex = index;
+    });
+    this.Education.setValue(educationIndex);
+    this.Company.setValue(emp.company);
+    this.JobExperience.setValue(emp.jobExperience);
+    this.Salary.setValue(emp.salary);
+    this.fileInput.nativeElement.value = '';
+  }
 
-  public get Firstname(): FormControl{
+  public get Firstname(): FormControl {
     return this.employeeForm.get('firstname') as FormControl;
   }
-  public get Lastname(): FormControl{
+  public get Lastname(): FormControl {
     return this.employeeForm.get('lastname') as FormControl;
   }
-  public get Birthday(): FormControl{
+  public get Birthday(): FormControl {
     return this.employeeForm.get('birthday') as FormControl;
   }
-  public get Gender(): FormControl{
+  public get Gender(): FormControl {
     return this.employeeForm.get('gender') as FormControl;
   }
-  public get Education(): FormControl{
+  public get Education(): FormControl {
     return this.employeeForm.get('education') as FormControl;
   }
-  public get Company(): FormControl{
+  public get Company(): FormControl {
     return this.employeeForm.get('company') as FormControl;
   }
-  public get JobExperience(): FormControl{
+  public get JobExperience(): FormControl {
     return this.employeeForm.get('jobExperience') as FormControl;
   }
-  public get Salary(): FormControl{
+  public get Salary(): FormControl {
     return this.employeeForm.get('salary') as FormControl;
   }
 }

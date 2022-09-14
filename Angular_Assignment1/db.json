@@ -1,0 +1,34 @@
+{
+  "employeeList": [
+    {
+      "empname": "Sara Muley",
+      "gender": "Female",
+      "birthdate": "2017-02-06T18:30:00.000Z",
+      "address": "Thane",
+      "mobile": "6793547839",
+      "email": "sara@gmail.com",
+      "company": "Infosys",
+      "id": 2
+    },
+    {
+      "empname": "Anushka Pharande",
+      "gender": "Female",
+      "birthdate": "2016-01-03T18:30:00.000Z",
+      "address": "Aurangabad",
+      "mobile": "8459107455",
+      "email": "sara@gmail.com",
+      "company": "Iauro Software",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
